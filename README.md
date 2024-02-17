@@ -1,4 +1,4 @@
-# Timekeeper
+# 🕥 Timekeeper
 
 ![](https://f.subo.dev/i/time.gif)
 
