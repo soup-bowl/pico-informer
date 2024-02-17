@@ -1,0 +1,8 @@
+{
+	"ntp": "1.europe.pool.ntp.org",
+	"network": {
+		"ssid": "WiFi-Source",
+		"psk": "Hunter2",
+		"country": "GB"
+	},
+}
