@@ -35,6 +35,7 @@ def status_handler(mode, status, ip):
 network_manager = NetworkManager(WIFI_CONFIG.COUNTRY, status_handler=status_handler)
 uasyncio.get_event_loop().run_until_complete(network_manager.client( WIFI_CONFIG.SSID, WIFI_CONFIG.PSK ))
 
+ntptime.settime()
 while True:
     t = localtime()
     context = "{:02d}{:02d}{:02d}{:02d}".format(t[3], t[4], t[5], int(ticks_us() % 1000000 / 10000))
