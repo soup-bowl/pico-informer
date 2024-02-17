@@ -6,6 +6,19 @@ A small Python script that runs on a **Raspberry Pico W**. This project utilises
 
 Theoretically this should maintain a continuously correct time display accurate to the ms due to the NTP protocol nature, so long as internet connection is maintained.
 
+
+## Configuration
+
+Configuration is done via a JSON file. [An example file is found in the repository](/config.json.example) with configuration needs specified.
+
+## Execution 
+
+Copy the `.py` files to the root of the Raspberry Pi Pico, when in MicroPython mode and connected using Thonny, or another way to access the ttyACM0.
+
+This depends on:
+
+* ntptime
+
 ## Pinout Setup
 
 [Pico Pinout Diagram](https://picow.pinout.xyz/)
