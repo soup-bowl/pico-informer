@@ -1,4 +1,3 @@
-import WIFI_CONFIG
 from machine import Pin, SPI
 from extlib import max7219_8digit
 from network_manager import NetworkManager
@@ -6,13 +5,15 @@ from time import localtime, sleep_ms, ticks_us
 import ntptime
 import time
 import uasyncio
+import json
 
 spi = SPI(0, baudrate=10000000, polarity=1, phase=0, sck=Pin(2), mosi=Pin(3))
 ss = Pin(5, Pin.OUT)
 
+conf = json.load(open('config.json'))
 disp = max7219_8digit.Display(spi, ss)
 
-ntptime.host = "ntp1.npl.co.uk"
+ntptime.host = conf['ntp']
 
 def status_handler(mode, status, ip):
     disp.write_to_buffer("")
@@ -32,8 +33,11 @@ def status_handler(mode, status, ip):
     disp.display()
     time.sleep(2)
 
-network_manager = NetworkManager(WIFI_CONFIG.COUNTRY, status_handler=status_handler)
-uasyncio.get_event_loop().run_until_complete(network_manager.client( WIFI_CONFIG.SSID, WIFI_CONFIG.PSK ))
+network_manager = NetworkManager(conf['network']['country'], status_handler=status_handler)
+uasyncio.get_event_loop().run_until_complete(network_manager.client(
+    conf['network']['ssid'],
+    conf['network']['psk']
+))
 
 ntptime.settime()
 while True:
