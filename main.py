@@ -11,7 +11,7 @@ spi = SPI(0, baudrate=10000000, polarity=1, phase=0, sck=Pin(2), mosi=Pin(3))
 ss = Pin(5, Pin.OUT)
 
 conf = json.load(open('config.json'))
-disp = max7219_8digit.Display(spi, ss)
+disp = max7219_8digit.Display(spi, ss, intensity=1)
 
 ntptime.host = conf['ntp']
 
