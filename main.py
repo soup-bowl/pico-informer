@@ -4,6 +4,7 @@ from network_manager import NetworkManager
 from time import localtime, sleep_ms, ticks_us
 import ntptime
 import time
+import utime
 import uasyncio
 import json
 
@@ -39,9 +40,19 @@ uasyncio.get_event_loop().run_until_complete(network_manager.client(
     conf['network']['psk']
 ))
 
+last_sync_time = utime.ticks_ms()
+sync_interval = 15 * 60 * 1000  # 15 minutes in milliseconds.
 ntptime.settime()
 while True:
+    # Account for cycle drift by re-syncing periodically with the NTP server.
+    current_time = utime.ticks_ms()
+    if utime.ticks_diff(current_time, last_sync_time) >= sync_interval:
+        print("Re-sync interval hit.")
+        ntptime.settime()
+        last_sync_time = current_time
+
     t = localtime()
     context = "{:02d}{:02d}{:02d}{:02d}".format(t[3], t[4], t[5], int(ticks_us() % 1000000 / 10000))
+
     disp.write_to_buffer(context)
     disp.display()
