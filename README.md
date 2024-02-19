@@ -4,7 +4,7 @@
 
 A small Python script that runs on a **Raspberry Pico W**. This project utilises a **MAX7219** 8 digit, 7 segment display to display a **NTP stream output** of the current time, collected from an NTP time server.
 
-Theoretically this should maintain a continuously correct time display accurate to the ms due to the NTP protocol nature, so long as internet connection is maintained.
+This relies on the CPU to maintain accurate time-keeping, which **does not** have a RTC. To account for this, the device will repoll the NTP server every 15 minutes.
 
 ## Configuration
 
