@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+#lib/ - suspended as micropip can be... erratic
 lib64/
 parts/
 sdist/

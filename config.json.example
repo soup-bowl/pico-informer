@@ -5,4 +5,8 @@
 		"psk": "Hunter2",
 		"country": "GB"
 	},
+	"mqtt": {
+        "broker": "address",
+        "topic": "DeskScroller"
+	},
 }

@@ -1,5 +1,7 @@
 # 🕥 Timekeeper
 
+(not up to date)
+
 ![](https://f.subo.dev/i/time.gif)
 
 A small Python script that runs on a **Raspberry Pico W**. This project utilises a **MAX7219** 8 digit, 7 segment display to display a **NTP stream output** of the current time, collected from an NTP time server.
